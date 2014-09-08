@@ -5,8 +5,20 @@
 <table class="table">
 {% for key, item in results.iteritems() %}
 	<tr>
+		{% if item.LISTED %}
+		<td>
+			{{ key }}
+			<br><small class="text-muted">{{ item.TEXT }}</small>
+		</td>
+		<td>
+			<i class="fa fa-times-circle-o text-danger"></i>
+		</td>
+		{% else %}
 		<td>{{ key }}</td>
-		<td>{{ item.LISTED }}</td>
+		<td>
+			<i class="fa fa-check-circle-o text-success"></i>
+		</td>
+		{% endif %}
 	</tr>
 {% endfor %}
 </table>
