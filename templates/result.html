@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Result</h3>
+<table class="table">
+{% for key, item in results.iteritems() %}
+	<tr>
+		<td>{{ key }}</td>
+		<td>{{ item.LISTED }}</td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}
