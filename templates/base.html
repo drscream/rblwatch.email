@@ -21,9 +21,11 @@
 				<h3 class="text-muted">rblwatch.email</h3>
 			</div>
 			<div class="search jumbotron">
-				<form role="form" class="form-inline" action="/" method="POST">
-					<div class="input-group">
-						<input type="ip" name="ip" class="form-control" id="ip" placeholder="Enter IP">
+				<form role="form" class="form" action="/" method="POST">
+					<div class="form-group {% if error %}has-error has-feedback{% endif %}">
+						{% if error %}<label class="control-label" for="inputError2">{{ error }}</label>{% endif %}
+						<input type="text" name="ip" class="form-control ip" id="ip" placeholder="Enter IP">
+						{% if error %}<span class="glyphicon glyphicon-remove form-control-feedback"></span>{% endif %}
 					</div>
 					<button type="submit" class="btn btn-primary">Search</button>
 				</form>

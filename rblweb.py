@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from werkzeug.contrib.fixers import ProxyFix
 from rblwatch.rblwatch import RBLSearch
+from IPy import IP
 
 app = Flask(__name__)
 
@@ -12,8 +13,13 @@ def index():
 
 @app.route('/', methods=['POST'])
 def show_result():
-	searcher = RBLSearch(request.form['ip'])
-	return render_template('result.html', results=searcher.listed)
+	try:
+		ip       = IP(request.form['ip'])
+		searcher = RBLSearch(ip)
+		return render_template('result.html', results=searcher.listed)
+	except ValueError:
+		return render_template('index.html', error="IP Address format was invalid")
+
 
 @app.route('/contact/')
 def show_contact():
